@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\stores;
+use App\Models\Store;
 use Illuminate\Http\Request;
 
-class StoresController extends Controller
+class StoreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class StoresController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(stores $stores)
+    public function show(Store $store)
     {
         //
     }
@@ -42,7 +42,7 @@ class StoresController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(stores $stores)
+    public function edit(Store $store)
     {
         //
     }
@@ -50,7 +50,7 @@ class StoresController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, stores $stores)
+    public function update(Request $request, Store $store)
     {
         //
     }
@@ -58,7 +58,7 @@ class StoresController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(stores $stores)
+    public function destroy(Store $store)
     {
         //
     }
