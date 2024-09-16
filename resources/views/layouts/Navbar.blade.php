@@ -112,6 +112,17 @@
                 <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
             </div>
         </li>
+
+
+        <form action="{{ route('logout')  }}" method="post">
+            @csrf
+            <li class="nav-item d-none d-sm-inline-block">
+                {{-- <a href="{{ route('logout')  }}" class="nav-link">Logout</a> --}}
+                <button type="submit" class="btn btn-sm btn-primary">Logout</button>
+            </li>
+        </form>
+
+
         <li class="nav-item">
             <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i class="fas fa-th-large"></i></a>
         </li>
