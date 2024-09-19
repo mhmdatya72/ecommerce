@@ -1,0 +1,142 @@
+@extends('layouts.dashboard')
+@section('title', 'Update Categories')
+
+@push('styles')
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+<!-- Theme style -->
+<link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+<!-- Google Font: Source Sans Pro -->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+<!-- Custom Styles -->
+<style>
+    .container {
+        max-width: 800px;
+        margin: 40px auto;
+    }
+
+    .form-container {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        padding: 30px;
+    }
+
+    .form-header {
+        border-bottom: 3px solid #007bff;
+        margin-bottom: 20px;
+    }
+
+    .form-header h2 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 700;
+        color: #007bff;
+    }
+
+    .form-control {
+        border-radius: 4px;
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+
+    .form-check-label {
+        margin-left: 10px;
+    }
+
+</style>
+@endpush
+
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="{{ route('dashboard.dashboard') }}">Dashboard</a></li>
+<li class="breadcrumb-item active">Update Categories</li>
+@endsection
+
+@section('content')
+<div class="container">
+    <div class="form-container">
+        <div class="form-header">
+            <h2>Update Category</h2>
+        </div>
+
+        <form action="{{ route('dashboard.categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+
+            <!-- Category Name -->
+            <div class="form-group">
+                <label for="name">Category Name</label>
+                <input type="text" name="name" id="name" value="{{ $category->name }}" class="form-control" placeholder="Enter category name">
+            </div>
+
+            <!-- Parent Category -->
+            <div class="form-group">
+                <label for="parent_id">Parent Category</label>
+                <select name="parent_id" id="parent_id" class="form-control">
+                    <option value="">Primary Category</option>
+                    @foreach ($parent as $parentItem)
+                    <option value="{{ $parentItem->id }}" @selected($category->parent_id == $parentItem->id)>{{ $parentItem->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+                <label for="description">Category Description</label>
+                <textarea name="description" id="description" class="form-control" rows="4" placeholder="Enter category description">{{ $category->description }}</textarea>
+            </div>
+
+            <!-- Image -->
+            <div class="form-group">
+                <label for="image">Category Image</label>
+                <input type="file" name="image" id="image" class="form-control">
+            </div>
+
+            <!-- Status -->
+            <div class="form-group">
+                <label>Status</label>
+                <div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="active" @checked($category->status == 'active')>
+                        <label class="form-check-label">Active</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="archived" @checked($category->status == 'archived')>
+                        <label class="form-check-label">Archived</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group text-right">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+@endsection
+
+@push('scripts')
+<!-- jQuery -->
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+@endpush
