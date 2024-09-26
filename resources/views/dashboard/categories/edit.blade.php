@@ -79,54 +79,7 @@
             @csrf
             @method('PUT')
 
-            <!-- Category Name -->
-            <div class="form-group">
-                <label for="name">Category Name</label>
-                <input type="text" name="name" id="name" value="{{ $category->name }}" class="form-control" placeholder="Enter category name">
-            </div>
-
-            <!-- Parent Category -->
-            <div class="form-group">
-                <label for="parent_id">Parent Category</label>
-                <select name="parent_id" id="parent_id" class="form-control">
-                    <option value="">Primary Category</option>
-                    @foreach ($parent as $parentItem)
-                    <option value="{{ $parentItem->id }}" @selected($category->parent_id == $parentItem->id)>{{ $parentItem->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <!-- Description -->
-            <div class="form-group">
-                <label for="description">Category Description</label>
-                <textarea name="description" id="description" class="form-control" rows="4" placeholder="Enter category description">{{ $category->description }}</textarea>
-            </div>
-
-            <!-- Image -->
-            <div class="form-group">
-                <label for="image">Category Image</label>
-                <input type="file" name="image" id="image" class="form-control">
-            </div>
-
-            <!-- Status -->
-            <div class="form-group">
-                <label>Status</label>
-                <div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="status" value="active" @checked($category->status == 'active')>
-                        <label class="form-check-label">Active</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="status" value="archived" @checked($category->status == 'archived')>
-                        <label class="form-check-label">Archived</label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Submit Button -->
-            <div class="form-group text-right">
-                <button type="submit" class="btn btn-primary">Save Changes</button>
-            </div>
+            @include('dashboard.categories._form')
         </form>
     </div>
 </div>

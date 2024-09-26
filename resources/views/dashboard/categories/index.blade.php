@@ -35,6 +35,7 @@
     <thead>
         <tr>
             <th>ID</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Parent</th>
             <th>Created At</th>
@@ -45,6 +46,7 @@
         @forelse ($categories as $category)
         <tr>
             <td>{{ $category->id }}</td>
+            <td><img src="{{ asset('storage/' . $category->image) }}" alt="!" height="50px"></td>
             <td>{{ $category->name }}</td>
             <td>{{ $category->parent_id ?? 'No Parent' }}</td>
             <td>{{ $category->created_at->format('Y-m-d') }}</td>
