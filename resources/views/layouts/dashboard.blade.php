@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AdminLTE 3</title>
+    <title>@yield('title', 'AdminLTE 3 | Starter')</title>
     <!-- Include CSS files here -->
     @stack('styles')
 </head>
+
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
+
         <!-- Navbar -->
         @include('layouts.Navbar')
         <!-- /.navbar -->
@@ -34,9 +37,12 @@
                     </div>
                 </div>
                 @endauth
+
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                        <!-- Starter Pages Section -->
                         <li class="nav-item has-treeview menu-open">
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -60,6 +66,8 @@
                                 </li>
                             </ul>
                         </li>
+
+                        <!-- Simple Link Section -->
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
@@ -69,9 +77,19 @@
                                 </p>
                             </a>
                         </li>
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
+
+                <!-- Categories Button -->
+                <div class="text-center mt-4">
+                    <a href="{{ route('dashboard.categories.index') }}" class="btn btn-success btn-lg category-button">
+                        <i class="fas fa-th-list"></i> <!-- أيقونة توضح أنه يتعلق بالأقسام -->
+                        Categories
+                    </a>
+                </div>
+
             </div>
             <!-- /.sidebar -->
         </aside>
@@ -110,10 +128,12 @@
 
         <!-- Main Footer -->
         @include('layouts.Footer')
+
     </div>
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
     @stack('scripts')
 </body>
+
 </html>

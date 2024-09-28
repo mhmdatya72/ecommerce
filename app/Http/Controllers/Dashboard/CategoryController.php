@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
@@ -31,20 +32,17 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $request->merge([
             'slug' => Str::slug($request->name), // تأكد من أن Str بحروف كبيرة
         ]);
 
         // استخدام التحقق من صحة المدخلات
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'parent_id' => 'nullable|exists:categories,id',
-            'description' => 'nullable|string',
-            'image' => 'nullable|image|max:2048', // تأكد من وجود صورة بحجم معقول
-            'status' => 'required|in:active,archived', // تأكد من تحديد حالة صحيحة
-        ]);
+        // $request->validate(Category::rules(),[
+        //     'unique' =>'This is name already  exists',
+        //     'required'=>'This field :attribute is required'
+        // ]);
 
         // استثناء الصورة من البيانات التي سيتم حفظها
         $data = $request->except('image');
@@ -95,21 +93,18 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
-        // دمج الـ slug الجديد مع البيانات الواردة
-        $request->merge([
-            'slug' => Str::slug($request->name), // تأكد من أن Str بحروف كبيرة
-        ]);
 
         // استخدام التحقق من صحة المدخلات
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'parent_id' => 'nullable|exists:categories,id',
-            'description' => 'nullable|string',
-            'image' => 'nullable|image|max:2048', // تأكد من وجود صورة بحجم معقول
-            'status' => 'required|in:active,archived', // تأكد من تحديد حالة صحيحة
-        ]);
+        // $request->validate(Category::rules(),[
+        //     'unique' =>'This is name already  exists',
+        //     'required'=>'This field :attribute is required'
+        // ]);
+              // دمج الـ slug الجديد مع البيانات الواردة
+              $request->merge([
+                'slug' => Str::slug($request->name), // تأكد من أن Str بحروف كبيرة
+            ]);
 
         // استثناء الصورة من البيانات التي سيتم تحديثها
         $data = $request->except('image');
