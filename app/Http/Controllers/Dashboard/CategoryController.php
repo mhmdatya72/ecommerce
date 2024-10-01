@@ -16,9 +16,25 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $request = request();
+        $query = Category::query();
+
+        // تصفية الفئات حسب الاسم
+        if ($name = $request->query('name')) {
+            $query->where('name', 'LIKE', "%{$name}%"); // استخدم % داخل علامات الاقتباس المزدوجة
+        }
+
+        // تصفية الفئات حسب الحالة
+        if ($status = $request->query('status')) {
+            $query->where('status', $status); // لا حاجة لاستخدام % هنا إذا كانت القيمة من نوع boolean أو integer
+        }
+
+        // استرجاع الفئات مع التصفية
+        $categories = $query->paginate(2); // استخدم $query بدلاً من Category::query()
+
         return view('dashboard.categories.index', compact('categories'));
     }
+
 
     /**
      * Show the form for creating a new resource.

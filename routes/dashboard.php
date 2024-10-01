@@ -27,4 +27,6 @@ Route::group([
         ->name('dashboard');
 
     Route::resource('/categories', CategoryController::class);
+    Route::resource('Products', CategoryController::class);
+    Route::resource('Orders', CategoryController::class);
 });
