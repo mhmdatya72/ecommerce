@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use App\Observers\CartObserver;
 use Illuminate\Support\Str;
 use GuzzleHttp\Promise\Create;
+use App\Observers\CartObserver;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Symfony\Component\HttpFoundation\Cookie;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
@@ -18,13 +20,20 @@ class Cart extends Model
         'quantity',
         'option',
     ];
-        protected static function booted(){
-        static::observe(CartObserver::class);
-        // static::creating(function(Cart $cart){
-        //     $cart->id=Str::uuid();
-        // });
 
+    protected static function booted()
+    {
+        static::observe(CartObserver::class);
+
+
+
+        // If you want to set UUIDs for Cart IDs, uncomment the following code:
+        // static::creating(function (Cart $cart) {
+        //     $cart->id = Str::uuid();
+        // });
     }
+
+
     public function user(){
         return $this->belongsTo(User::class)->withDefault([
             'name'=>'anonymous',

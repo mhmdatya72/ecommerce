@@ -15,7 +15,25 @@
     <link rel="stylesheet" href="{{asset('assets/css/tiny-slider.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/glightbox.min.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/main.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/themify-icons.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/magnific-popup.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/jquery.fancybox.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/niceselect.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/animate.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/flex-slider.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/reset.css')}}" />
+    <link rel="stylesheet" href="{{asset('style.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/responsive.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/color/color1.css')}}" />
 
+    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}" />
+    {{-- <link rel="stylesheet" href="{{asset('assets/css/all.min.css')}}" /> --}}
+    <link rel="stylesheet" href="{{asset('assets/css/all.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/themify-icons.css')}}" />
+    <link rel="stylesheet" href="css/all.min.css">
+
+    <link rel="stylesheet" href="#" id="colors">
 </head>
 
 <body>
@@ -158,53 +176,11 @@
                                         <span class="total-items">0</span>
                                     </a>
                                 </div>
-                                <div class="cart-items">
-                                    <a href="javascript:void(0)" class="main-btn">
-                                        <i class="lni lni-cart"></i>
-                                        <span class="total-items">2</span>
-                                    </a>
-                                    <!-- Shopping Item -->
-                                    <div class="shopping-item">
-                                        <div class="dropdown-cart-header">
-                                            <span>2 Items</span>
-                                            <a href="cart.html">View Cart</a>
-                                        </div>
-                                        <ul class="shopping-list">
-                                            <li>
-                                                <a href="javascript:void(0)" class="remove" title="Remove this item"><i class="lni lni-close"></i></a>
-                                                <div class="cart-img-head">
-                                                    <a class="cart-img" href="product-details.html"><img src="{{asset('assets/images/header/cart-items/item1.jpg')}}" alt="#"></a>
-                                                </div>
 
-                                                <div class="content">
-                                                    <h4><a href="product-details.html">
-                                                            Apple Watch Series 6</a></h4>
-                                                    <p class="quantity">1x - <span class="amount">$99.00</span></p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)" class="remove" title="Remove this item"><i class="lni lni-close"></i></a>
-                                                <div class="cart-img-head">
-                                                    <a class="cart-img" href="product-details.html"><img src="{{asset('assets/images/header/cart-items/item2.jpg')}}" alt="#"></a>
-                                                </div>
-                                                <div class="content">
-                                                    <h4><a href="product-details.html">Wi-Fi Smart Camera</a></h4>
-                                                    <p class="quantity">1x - <span class="amount">$35.00</span></p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="bottom">
-                                            <div class="total">
-                                                <span>Total</span>
-                                                <span class="total-amount">$134.00</span>
-                                            </div>
-                                            <div class="button">
-                                                <a href="checkout.html" class="btn animate">Checkout</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--/ End Shopping Item -->
-                                </div>
+                                <!-- Shopping Item -->
+                                <x-cart-menu />
+                                <!--/ End Shopping Item -->
+
                             </div>
                         </div>
                     </div>
@@ -527,6 +503,16 @@
         });
 
     </script>
+    <script>
+        const csrf_token = '{{ csrf_token() }}'; // تأكد من وجود csrf_token
+
+    </script>
+    <script>
+        var csrf_token = '{{ csrf_token() }}'; // استخدام CSRF Token في الجافا سكريبت
+
+    </script>
+
+
 </body>
 
 </html>

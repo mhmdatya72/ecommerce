@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Dashboard\ProductController;
-use App\Http\Controllers\Dashboard\CategoryController;
-use App\Http\Controllers\Dashboard\ProfileController;
 use App\Http\Middleware\CheckUserType;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Front\CartController;
+use App\Http\Controllers\Dashboard\ProductController;
+use App\Http\Controllers\Dashboard\ProfileController;
+use App\Http\Controllers\Dashboard\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,7 @@ Route::patch('profile', [ProfileController::class, 'update'])->name('profile.upd
     Route::resource('orders', CategoryController::class);
 
 
+
 // Route::get('products', [ProductController::class, 'index']);
 
 // عرض صفحة إنشاء منتج جديد (Create)
@@ -64,4 +66,5 @@ Route::patch('profile', [ProfileController::class, 'update'])->name('profile.upd
 
 // حذف منتج (Destroy)
 // Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('dashboard.products.destroy');
+
 });
