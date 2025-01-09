@@ -38,5 +38,4 @@ Route::get('/products', [ProductsController::class, 'index'])->name('products.in
 Route::get('/products/{product:slug}', [ProductsController::class, 'show'])->name('products.show');
 Route::resource('cart',  CartController::class);
 
-require __DIR__.'/auth.php';
 require __DIR__.'/dashboard.php';

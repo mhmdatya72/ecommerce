@@ -1,47 +1,94 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+@extends('layouts.dashboard')
+@section('title', 'Home')
+@push('styles')
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+<!-- Bootstrap -->
+<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+<!-- Magnific Popup -->
+<link rel="stylesheet" href="{{ asset('css/magnific-popup.min.css') }}">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}">
+<!-- Fancybox -->
+<link rel="stylesheet" href="{{ asset('css/jquery.fancybox.min.css') }}">
+<!-- Themify Icons -->
+<link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}">
+<!-- Nice Select CSS -->
+<link rel="stylesheet" href="{{ asset('css/niceselect.css') }}">
+<!-- Animate CSS -->
+<link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+<!-- Flex Slider CSS -->
+<link rel="stylesheet" href="{{ asset('css/flex-slider.min.css') }}">
+<!-- Owl Carousel -->
+<link rel="stylesheet" href="{{ asset('css/owl-carousel.css') }}">
+<!-- Slicknav -->
+<link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}">
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+<!-- Eshop StyleSheet -->
+<link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+<link rel="stylesheet" href="{{ asset('style.css') }}">
+<link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+
+<!-- Color CSS -->
+<!--<link rel="stylesheet" href="{{ asset('css/color/color.css') }}">-->
+<!--<link rel="stylesheet" href="{{ asset('css/color/color3.css') }}">-->
+<!--<link rel="stylesheet" href="{{ asset('css/color/color4.css') }}">-->
+<!--<link rel="stylesheet" href="{{ asset('css/color/color5.css') }}">-->
+<!--<link rel="stylesheet" href="{{ asset('css/color/color6.css') }}">-->
+<!--<link rel="stylesheet" href="{{ asset('css/color/color7.css') }}">-->
+<!--<link rel="stylesheet" href="{{ asset('css/color/color8.css') }}">-->
+<!--<link rel="stylesheet" href="{{ asset('css/color/color9.css') }}">-->
+<!--<link rel="stylesheet" href="{{ asset('css/color/color10.css') }}">-->
+<!--<link rel="stylesheet" href="{{ asset('css/color/color11.css') }}">-->
+<!--<link rel="stylesheet" href="{{ asset('css/color/color12.css') }}">-->
+
+<link rel="stylesheet" href="#" id="colors">
+
+
+@endpush
+@section('address', 'Login')
+@section('breadcrumb')
+<li class="breadcrumb-item active">Login</li>
+@parent
+@endsection
+@section('content')
+<section class="shop login section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3 col-12">
+                <div class="login-form">
+                    <h2>Login</h2>
+                    <p>Please register in order to checkout more quickly</p>
+                    <!-- Form -->
+                    <form class="form" method="post" action="#">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Your Email<span>*</span></label>
+                                    <input type="email" name="email" placeholder="" required="required">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Your Password<span>*</span></label>
+                                    <input type="password" name="password" placeholder="" required="required">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group login-btn">
+                                    <button class="btn" type="submit">Login</button>
+                                    <a href="register.html" class="btn">Register</a>
+                                </div>
+                                <div class="checkbox">
+                                    <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">Remember me</label>
+                                </div>
+                                <a href="#" class="lost-pass">Lost your password?</a>
+                            </div>
+                        </div>
+                    </form>
+                    <!--/ End Form -->
+                </div>
+            </div>
         </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    </div>
+</section>
+@stop
