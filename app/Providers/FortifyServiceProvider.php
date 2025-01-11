@@ -12,22 +12,51 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
-
+use Illuminate\Support\Facades\Config; // Correct import for Config
+use Laravel\Fortify\Contracts\LoginResponse as loginResponse;
 class FortifyServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
      */
-    public function register(): void
-    {
-        //
-    }
+
+
+        
+     public function register(): void
+     {
+         $request = request();
+     
+         if ($request->is('admin/*')) {
+             // Set Fortify configurations for the admin section
+             Config::set('fortify.guard', 'admin');
+             Config::set('fortify.passwords', 'admins');
+             Config::set('fortify.prefix', 'admin');
+             Config::set('fortify.home', 'admin/dashboard');
+     
+             // Override the login response for admin users
+             $this->app->singleton(LoginResponse::class, function () {
+                 return new class implements LoginResponse {
+                     public function toResponse($request)
+                     {
+                         if ($request->user('admin')) {
+                             return redirect()->intended('admin.dashboard');
+                         }
+     
+                         return redirect()->intended('/');
+                     }
+                 };
+             });
+         }
+     }
+     
 
     /**
      * Bootstrap any application services.
      */
     public function boot(): void
     {
+
+
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
@@ -42,6 +71,11 @@ class FortifyServiceProvider extends ServiceProvider
         RateLimiter::for('two-factor', function (Request $request) {
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
-        Fortify::viewPrefix('auth.');
+        if(Config::get('fortify.guard') === 'admin'){
+
+     Fortify::viewPrefix('auth.');
+}else{
+     Fortify::viewPrefix('front.auth.');
+}
     }
 }

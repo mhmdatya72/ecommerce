@@ -3,7 +3,7 @@
     <nav aria-label="breadcrumb" class="my-4">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index1.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Login as Admin</li>
+            <li class="breadcrumb-item active" aria-current="page">Login </li>
         </ol>
     </nav>
     <!-- End Breadcrumbs -->
@@ -51,9 +51,9 @@
                             <!-- Actions -->
                             <div class="d-flex justify-content-between align-items-center">
                                 @if (Route::has('password.request'))
-                                <a href="{{ route('password.request') }}" class="text-decoration-none text-primary">
-                                    {{ __('Forgot your password?') }}
-                                </a>
+                                    <a href="{{ route('password.request') }}" class="text-decoration-none text-primary">
+                                        {{ __('Forgot your password?') }}
+                                    </a>
                                 @endif
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Log in') }}

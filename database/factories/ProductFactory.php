@@ -25,7 +25,7 @@ class ProductFactory extends Factory
             'name' => $d,
             'slug'=> Str::slug($d),
             'description'=> $this->faker->sentence(15),
-            'image'=> $this->faker->imageUrl,
+            'image'=> $this->faker->imageUrl(640, 480, 'products', true),
             'price'=> $this->faker->randomFloat(2,1,450),
             'compare_price'=> $this->faker->randomFloat(2,500,999),
            'store_id' => Store::factory(),

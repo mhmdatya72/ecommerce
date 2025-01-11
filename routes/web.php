@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Front\CartController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\ProductsController;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,15 @@ use App\Http\Controllers\Front\ProductsController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){ //...
+   
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -38,4 +48,6 @@ Route::get('/products', [ProductsController::class, 'index'])->name('products.in
 Route::get('/products/{product:slug}', [ProductsController::class, 'show'])->name('products.show');
 Route::resource('cart',  CartController::class);
 
+// require __DIR__.'/auth.php';
 require __DIR__.'/dashboard.php';
+});

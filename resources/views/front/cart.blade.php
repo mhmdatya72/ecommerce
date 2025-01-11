@@ -51,7 +51,7 @@
                                     </p>
                                     <p class="product-des">{{ $item->product->description }}</p>
                                 </td>
-                                <td class="price" data-title="Price" class="text-center">
+                                <td class="price text-center" data-title="Price">
                                     <span>{{ Currency::format($item->product->price) }}</span>
                                 </td>
                                 <td class="text-center">
@@ -69,7 +69,6 @@
                                         <i class="lni lni-close"></i>
                                     </a>
                                 </td>
-
                             </tr>
                             @endforeach
                         </tbody>
@@ -136,28 +135,20 @@
         function updateTotal(totalElement, quantity, price) {
             let newTotal = quantity * price;
             totalElement.innerText = new Intl.NumberFormat('en-US', {
-                style: 'currency'
-                , currency: 'USD'
+                style: 'currency',
+                currency: 'USD'
             }).format(newTotal);
         }
-
     </script>
 
-    <!--/ End Shopping Cart -->
+    @push('scripts')
+    <script>
+        const csrf_token = "{{ csrf_token() }}";
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="{{ asset('js/cart.js') }}"></script>
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+    @endpush
 </x-front-layout>
-
-@push('scripts')
-<script>
-    const csrf_token = "{{ csrf_token() }}";
-
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="{{ asset('js/cart.js') }}"></script>
-<!-- jQuery -->
-<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
-@vite('js/cart.js')
-@endpush

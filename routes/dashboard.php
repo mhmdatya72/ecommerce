@@ -21,9 +21,9 @@ use App\Http\Controllers\Dashboard\CategoryController;
 */
 
 Route::group([
-    'middleware' =>[ 'auth','auth.type:admin'],
+    'middleware' =>[ 'auth:admin'],
     'as' => 'dashboard.', // Add a dot here
-    'prefix' => 'dashboard',
+    'prefix' => 'admin/dashboard',
 ], function () {
 
 
